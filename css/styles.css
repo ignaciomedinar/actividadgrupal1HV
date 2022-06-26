@@ -1,0 +1,21 @@
+.graf {
+  background-color: #edede9;
+  border: 1px solid #d6ccc2;
+}
+
+.backdrop {
+  fill: #ccc;
+  stroke: #777;
+}
+
+.axis {
+  font-size: 10pt;
+}
+
+.titulo {
+  font-size: 10pt;
+  font-weight: bold;
+}
+h1, footer{
+  margin: 20pt;
+}
