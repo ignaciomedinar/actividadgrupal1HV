@@ -61,7 +61,7 @@ const draw = async (m = "2007") => {
   const color = d3
     .scaleOrdinal()
     .domain(Object.keys(data[0]).slice(1))
-    .range(d3.schemePastel1)
+    .range(d3.schemePaired)
 
   // Titulo
   const titulo = g
@@ -99,33 +99,46 @@ const draw = async (m = "2007") => {
     rect
       .enter()
       .append("rect")
+      
       .attr("x", (d) => x(xAccessor(d)))
       .attr("y", y(0))
       .attr("width", x.bandwidth())
+      
       .attr("height", 0)
-      .attr("fill", "green")
+      .attr("fill", "white")
+      
+      //Tooltip
+      .append('title')
+      .text((d) => `Exportaciones en el Estado de ${d.Estado}`)
+
       .merge(rect)
+      
       .transition()
-      .duration(2000)
+      .duration(2500)
+      
+      
+
       .attr("x", (d) => x(xAccessor(d)))
       .attr("y", (d) => y(yAccessor(d)))
+      
       .attr("width", x.bandwidth())
       .attr("height", (d) => alto - y(yAccessor(d)))
       .attr("fill", color(m))
+      
 
     // Título
     titulo.text("Exportaciones en USD por estado en " + m)
 
     // Ejes
     const xAxis = d3.axisBottom(x)
-    const yAxis = d3.axisLeft(y).ticks(10)
-    xAxisGroup.transition().duration(2000).call(xAxis).selectAll("text")
+    const yAxis = d3.axisLeft(y).ticks(15)
+    xAxisGroup.transition().duration(2500).call(xAxis).selectAll("text")
     .attr("y", 0)
     .attr("x", 9)
     .attr("dy", ".35em")
     .attr("transform", "rotate(90)")
     .style("text-anchor", "start")
-    yAxisGroup.transition().duration(2000).call(yAxis)
+    yAxisGroup.transition().duration(2500).call(yAxis)
     
   }
   
