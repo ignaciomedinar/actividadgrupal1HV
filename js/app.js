@@ -103,28 +103,32 @@ const draw = async (m = "2007") => {
       .attr("x", (d) => x(xAccessor(d)))
       .attr("y", y(0))
       .attr("width", x.bandwidth())
-      
-      .attr("height", 0)
-      .attr("fill", "white")
-      
+      .attr("class","rectangle")
+
       //Tooltip
-      .append('title')
+      .append('svg:title')
       .text((d) => `Exportaciones en el Estado de ${d.Estado}`)
 
+      .attr("height", 0)
+      .attr("fill", "white")
+
       .merge(rect)
-      
+
       .transition()
       .duration(2500)
-      
-      
-
       .attr("x", (d) => x(xAccessor(d)))
       .attr("y", (d) => y(yAccessor(d)))
+      
       
       .attr("width", x.bandwidth())
       .attr("height", (d) => alto - y(yAccessor(d)))
       .attr("fill", color(m))
       
+      
+    // rect
+    //   //Tooltip
+    //   .append('svg:title')
+    //   .text((d) => `Exportaciones en el Estado de ${d.Estado}`)
 
     // Título
     titulo.text("Exportaciones en USD por estado en " + m)

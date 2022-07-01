@@ -19,3 +19,6 @@
 h1, footer{
   margin: 20pt;
 }
+.rectangle:hover {
+  opacity: 0.66;
+}
