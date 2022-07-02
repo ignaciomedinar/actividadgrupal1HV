@@ -1,6 +1,7 @@
 .graf {
   background-color: #edede9;
   border: 1px solid #d6ccc2;
+  margin: 0;
 }
 
 .backdrop {
@@ -21,4 +22,29 @@ h1, footer{
 }
 .rectangle:hover {
   opacity: 0.66;
+}
+
+#tooltip {
+  background-color: #aaa;
+  padding: 0px;
+  border: 1px solid #555;
+  position: relative;
+  width: 150px;
+  margin: 0px;
+
+}
+
+#tooltip .estado {
+  font-size: 13px;
+  text-align: center;
+  margin: 0;
+}
+
+#tooltip .estado-data {
+  color: #eee;
+  font-size: 10px;
+}
+
+#estado{
+  margin: 0;
 }

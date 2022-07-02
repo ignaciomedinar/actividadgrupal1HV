@@ -61,7 +61,7 @@ const draw = async (m = "2007") => {
   const color = d3
     .scaleOrdinal()
     .domain(Object.keys(data[0]).slice(1))
-    .range(d3.schemePaired)
+    .range(d3.schemeDark2)
 
   // Titulo
   const titulo = g
@@ -105,13 +105,26 @@ const draw = async (m = "2007") => {
       .attr("width", x.bandwidth())
       .attr("class","rectangle")
 
-      //Tooltip
-      .append('svg:title')
-      .text((d) => `Exportaciones en el Estado de ${d.Estado}`)
+      // //Tooltip
+      // .append('svg:title')
+      // .text((d) => `Exportaciones en el Estado de ${d.Estado}`)
 
       .attr("height", 0)
       .attr("fill", "white")
 
+      .on("mouseenter", function (event, datum) {
+        d3.select("#estado").text(datum.Estado)
+        // d3.select("#estado-USD").text(datum.USD)
+        // d3.select("#estado-subin").text(datum.Subindustria)
+        // d3.select("#country-population").text(datum.population)
+        d3.select("#tooltip")
+          .style("display", "block")
+          .style("top", y(yAccessor(datum)) + margins.top + "px")
+          .style("left", x(xAccessor(datum)) + margins.left + "px")
+      })
+      .on("mouseout", function (event, datum) {
+        d3.select("#tooltip").style("display", "none")
+      })
       .merge(rect)
 
       .transition()
